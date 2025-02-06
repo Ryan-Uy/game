@@ -137,7 +137,7 @@ if (obstacles.length === 0 || obstacles[obstacles.length - 1].x < canvas.width -
             gameOver = true;
             restartBtn.style.display = "block";
             if(score < highScore){
-                
+              highScore == score;
             }
             return;
         }
