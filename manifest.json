@@ -1,0 +1,12 @@
+{
+  "manifest_version": 3,
+  "name": "Jump Square Game",
+  "version": "1.0",
+  "description": "Square jumps over triangles",
+  "action": {
+    "default_popup": "index.html",
+    "default_icon" : {
+      "16" : "game.png"
+    }
+  }
+}
