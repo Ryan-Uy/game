@@ -2,6 +2,7 @@ const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 const restartBtn = document.getElementById("restart");
 const scoreDisplay = document.getElementById("score");
+const highScoreDisplay = document.getElementById("highScore");
 
 const groundY = 180;
 let square = { x: 50, y: groundY - 20, size: 20, dy: 0 };
@@ -10,6 +11,16 @@ let gravity = 0.5;
 let isJumping = false;
 let score = 0;
 let gameOver = false;
+let highScore = 0;
+
+function saveHighScore(score){
+    localStorage.setItem("highScore", score);
+}
+
+function getHighScore(){
+    highScore = localStorage.getItem("highScore");
+    console.log("Retrieved value:", highScore);
+}
 
 // Jump function
 document.addEventListener("keydown", (e) => {
@@ -21,6 +32,10 @@ document.addEventListener("keydown", (e) => {
 
 // Restart function
 restartBtn.addEventListener("click", () => {
+    if(score > highScore){
+    saveHighScore(score);
+    }
+    getHighScore();
     score = 0;
     obstacles = [];
     square.y = groundY - square.size;
@@ -28,6 +43,7 @@ restartBtn.addEventListener("click", () => {
     gameOver = false;
     restartBtn.style.display = "none";
     scoreDisplay.textContent = score;
+    highScoreDisplay.textContent = highScore;
     loop();
 });
 
@@ -127,6 +143,7 @@ if (obstacles.length === 0 || obstacles[obstacles.length - 1].x < canvas.width -
             obstacles.shift();
             score++;
             scoreDisplay.textContent = score;
+            highScoreDisplay.textContent = highScore;
         }
     }
 
