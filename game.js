@@ -12,6 +12,7 @@ let isJumping = false;
 let score = 0;
 let gameOver = false;
 let highScore = 0;
+let value = getHighScore();
 
 function saveHighScore(score){
     localStorage.setItem("highScore", score);
@@ -135,6 +136,9 @@ if (obstacles.length === 0 || obstacles[obstacles.length - 1].x < canvas.width -
         ) {
             gameOver = true;
             restartBtn.style.display = "block";
+            if(score < highScore){
+                
+            }
             return;
         }
 
